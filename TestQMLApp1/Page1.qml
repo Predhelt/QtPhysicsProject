@@ -5,20 +5,23 @@ Page1Form {
     width: parent.width
     height: parent.height
     anchors.centerIn: parent
-    property double gravity: -9.8
+    property double gravity: -9.81
     property var component: Qt.createComponent("Ball.qml")
     property var balls: []
     property int maxBalls: 5
     btnBall.onClicked: {
-        firstBall.enabled = true
-        var newBall = component.createObject(pg1)
-        if(component.status === Component.Error)
-            console.debug("Error:"+ component.errorString() )
-        else if(component.status === Component.Ready)
-            balls.push(newBall)
-        newBall.z = 0
-    }
-    Ball {
-        id: firstBall
+        if(balls.length < 5)
+        {
+            var newBall = component.createObject(pg1)
+            if(component.status === Component.Error) {
+                console.debug("Error:"+ component.errorString())
+                return;
+            }
+            else if(component.status === Component.Ready) {
+                newBall.acceleration = gravity
+                newBall.z = 0
+                balls.push(newBall)
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Sandbox")
 
     Page1 {
         id: mainPage
@@ -29,5 +29,4 @@ ApplicationWindow {
         id: rCMenu
         visible: false
     }
-
 }
